@@ -1,10 +1,17 @@
 import React from "react";
+import Weather from "./Pages/Weather";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 function App() {
+  const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    uri: "https://graphql-weather-api.herokuapp.com/",
+  });
+
   return (
-    <div>
-      <h1 className="text-2xl text-gray-400">Hello World</h1>
-    </div>
+    <ApolloProvider client={client}>
+      <Weather />
+    </ApolloProvider>
   );
 }
 
