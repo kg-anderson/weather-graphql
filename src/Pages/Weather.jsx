@@ -35,6 +35,32 @@ function Weather() {
         {data && (
           <>
             <h1>{data.getCityByName.name}</h1>
+            <p>
+              Min {Math.round(data.getCityByName.weather.temperature.min)}
+              {"\u00b0"}C
+            </p>
+            <p>
+              Max {Math.round(data.getCityByName.weather.temperature.max)}
+              {"\u00b0"}C
+            </p>
+            <p>
+              Actual {Math.round(data.getCityByName.weather.temperature.actual)}
+              {"\u00b0"}C
+            </p>
+            <img
+              src={`http://openweathermap.org/img/wn/${data.getCityByName.weather.summary.icon}@2x.png`}
+              alt="current weather"
+            />
+            <p>
+              {new Date(
+                data.getCityByName.weather.timestamp * 1000
+              ).toLocaleDateString("en-GB")}
+            </p>
+            <p>
+              {new Date(
+                data.getCityByName.weather.timestamp * 1000
+              ).toLocaleTimeString("en-GB")}
+            </p>
           </>
         )}
       </div>

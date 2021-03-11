@@ -15,6 +15,7 @@ export const GET_CITY_WEATHER_QUERY = gql`
           description
           icon
         }
+        timestamp
         temperature {
           actual
           feelsLike
