@@ -41,6 +41,7 @@ function Weather() {
                   },
                 })
               }
+              className="bg-gray-200 rounded font-bold py-2 px-4 rounded"
             >
               Show me the weather
             </button>
@@ -93,7 +94,12 @@ function Weather() {
           </>
         )}
       </div>
-      <button onClick={() => resetForm()}>Reset</button>
+      <button
+        className="bg-gray-200 rounded font-bold py-2 px-4 rounded"
+        onClick={() => resetForm()}
+      >
+        Reset
+      </button>
     </>
   );
 }
