@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { GET_CITY_WEATHER_QUERY } from "../graphql/queries/Queries";
+import WeatherResult from "../Components/WeatherResult";
 
 function Weather() {
   const [inputCity, setInputCity] = useState("");
@@ -50,49 +51,7 @@ function Weather() {
       </div>
 
       <div className="mt-10 bg-green-50 w-1/2 m-0 m-auto rounded-lg">
-        {cityData && (
-          <>
-            <h1 className="text-3xl inline-block">{data.getCityByName.name}</h1>
-            <h5 className="text-lg inline-block ml-2">
-              {data.getCityByName.country}
-            </h5>
-
-            <div>
-              <p className="text-sm inline-block mr-2">
-                {new Date(
-                  data.getCityByName.weather.timestamp * 1000
-                ).toLocaleDateString("en-GB")}
-              </p>
-              <p className="text-sm inline-block mr-2">
-                {new Date(
-                  data.getCityByName.weather.timestamp * 1000
-                ).toLocaleTimeString("en-GB")}
-              </p>
-            </div>
-
-            <div className="flex justify-center">
-              <img
-                src={`http://openweathermap.org/img/wn/${data.getCityByName.weather.summary.icon}@2x.png`}
-                alt="current weather"
-              />
-              <div className="flex flex-col mt-5">
-                <p className="text-sm">
-                  Min {Math.round(data.getCityByName.weather.temperature.min)}
-                  {"\u00b0"}C
-                </p>
-                <p className="text-sm">
-                  Max {Math.round(data.getCityByName.weather.temperature.max)}
-                  {"\u00b0"}C
-                </p>
-                <p>
-                  Actual{" "}
-                  {Math.round(data.getCityByName.weather.temperature.actual)}
-                  {"\u00b0"}C
-                </p>
-              </div>
-            </div>
-          </>
-        )}
+        {cityData && <WeatherResult results={cityData} />}
       </div>
       <button
         className="bg-gray-200 rounded font-bold py-2 px-4 rounded"
