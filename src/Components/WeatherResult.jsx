@@ -3,7 +3,6 @@ import React from "react";
 function WeatherResult(props) {
   return (
     <div>
-      <p>TEST</p>
       <h1 className="text-3xl inline-block">{props.results.name}</h1>
       <h5 className="text-lg inline-block ml-2">{props.results.country}</h5>
 

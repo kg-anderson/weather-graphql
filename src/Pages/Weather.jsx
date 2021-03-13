@@ -17,13 +17,20 @@ function Weather() {
     setCityData(null);
   }
 
-  if (loading) return <p>Loading ...</p>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p type="button" className="animate-pulse text-center text-2xl">
+          Processing
+        </p>
+      </div>
+    );
 
   return (
     <>
-      <div className="text-center">
+      <div className="flex items-center justify-center h-screen">
         {!cityData && (
-          <div>
+          <div className="m-0 m-auto">
             <h1>City Weather</h1>
             <input
               type="text"
@@ -48,17 +55,21 @@ function Weather() {
             </button>
           </div>
         )}
-      </div>
 
-      <div className="mt-10 bg-green-50 w-1/2 m-0 m-auto rounded-lg">
-        {cityData && <WeatherResult results={cityData} />}
+        <div className="mt-10 bg-green-50 rounded-lg">
+          {cityData && (
+            <>
+              <WeatherResult results={cityData} />
+              <button
+                className="bg-gray-200 rounded font-bold py-2 px-4 rounded inline-block align-middle"
+                onClick={() => resetForm()}
+              >
+                Reset
+              </button>
+            </>
+          )}
+        </div>
       </div>
-      <button
-        className="bg-gray-200 rounded font-bold py-2 px-4 rounded"
-        onClick={() => resetForm()}
-      >
-        Reset
-      </button>
     </>
   );
 }
