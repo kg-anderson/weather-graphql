@@ -11,14 +11,12 @@ export const GET_CITY_WEATHER_QUERY = gql`
       country
       weather {
         summary {
-          title
           description
           icon
         }
         timestamp
         temperature {
           actual
-          feelsLike
           min
           max
         }

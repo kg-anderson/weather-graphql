@@ -6,12 +6,9 @@ import WeatherResult from "../Components/WeatherResult";
 function Weather() {
   const [inputCity, setInputCity] = useState("");
   const [cityData, setCityData] = useState(null);
-  const [displayWeather, { loading, data, error }] = useLazyQuery(
-    GET_CITY_WEATHER_QUERY,
-    {
-      onCompleted: (data) => setCityData(data.getCityByName),
-    }
-  );
+  const [displayWeather, { loading }] = useLazyQuery(GET_CITY_WEATHER_QUERY, {
+    onCompleted: (data) => setCityData(data.getCityByName),
+  });
 
   function resetForm() {
     setCityData(null);
@@ -31,7 +28,7 @@ function Weather() {
       <div className="flex items-center justify-center h-screen">
         {!cityData && (
           <div className="m-0 m-auto">
-            <h1>City Weather</h1>
+            <h1 className="text-2xl">City Weather</h1>
             <input
               type="text"
               placeholder="Enter city name"
@@ -49,19 +46,21 @@ function Weather() {
                   },
                 })
               }
-              className="bg-gray-200 rounded font-bold py-2 px-4 rounded"
+              className="m-4 bg-gray-200 rounded font-bold py-2 px-4 rounded"
             >
               Show me the weather
             </button>
           </div>
         )}
 
-        <div className="mt-10 bg-green-50 rounded-lg">
+        <div>
           {cityData && (
             <>
-              <WeatherResult results={cityData} />
+              <div className="mt-10 bg-green-50 rounded-lg p-10">
+                <WeatherResult results={cityData} />
+              </div>
               <button
-                className="bg-gray-200 rounded font-bold py-2 px-4 rounded inline-block align-middle"
+                className="bg-gray-200 rounded font-bold py-2 px-4 rounded mt-4"
                 onClick={() => resetForm()}
               >
                 Reset
